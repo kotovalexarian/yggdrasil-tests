@@ -1,3 +1,0 @@
-#!/bin/sh
-
-sudo /home/vagrant/yggdrasil-go/yggdrasilctl -endpoint unix:///home/vagrant/yggdrasil.sock $@

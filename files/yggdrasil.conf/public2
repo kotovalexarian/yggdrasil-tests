@@ -29,7 +29,7 @@
   # connections either on TCP/9001 or a UNIX socket depending on your
   # platform. Use this value for yggdrasilctl -endpoint=X. To disable
   # the admin socket, use the value "none" instead.
-  AdminListen: unix:///home/vagrant/yggdrasil.sock
+  AdminListen: unix:///var/run/yggdrasil.sock
 
   # Configuration for which interfaces multicast peer discovery should be
   # enabled on. Each entry in the list should be a json object which may

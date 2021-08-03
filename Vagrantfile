@@ -4,9 +4,9 @@
 Vagrant.configure '2' do |config|
   config.vm.box = 'ubuntu/focal64'
 
-  config.vm.provision :file, source: 'files/yggdrasil',      destination: 'yggdrasil'
-  config.vm.provision :file, source: 'files/yggdrasilctl',   destination: 'yggdrasilctl'
-  config.vm.provision :file, source: 'files/http_server.rb', destination: 'http_server.rb'
+  config.vm.provision :file, source: 'files/http_server.rb',      destination: 'http_server.rb'
+  config.vm.provision :file, source: 'files/http_server.service', destination: 'http_server.service'
+  config.vm.provision :file, source: 'files/yggdrasil.service',   destination: 'yggdrasil.service'
 
   config.vm.provision :shell, privileged: false, inline: <<~PROVISION
     sudo apt-get update
@@ -15,6 +15,13 @@ Vagrant.configure '2' do |config|
     test -d "$HOME/yggdrasil-go" || git clone -b v0.4.0 https://github.com/yggdrasil-network/yggdrasil-go "$HOME/yggdrasil-go"
     cd "$HOME/yggdrasil-go"
     ./build
+
+    sudo mv "$HOME/http_server.service" /etc/systemd/system/http_server.service
+    sudo mv "$HOME/yggdrasil.service"   /etc/systemd/system/yggdrasil.service
+
+    sudo systemctl daemon-reload
+    sudo systemctl enable  http_server.service yggdrasil.service
+    sudo systemctl restart http_server.service yggdrasil.service
   PROVISION
 
   ####################

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-sudo /home/vagrant/yggdrasil-go/yggdrasil -useconffile /home/vagrant/yggdrasil.conf

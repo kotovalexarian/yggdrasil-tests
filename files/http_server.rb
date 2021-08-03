@@ -3,7 +3,7 @@
 require 'socket'
 require 'thread'
 
-server = TCPServer.new '::', 8000
+server = TCPServer.new '::', 80
 
 loop do
   Thread.new server.accept do |client|
