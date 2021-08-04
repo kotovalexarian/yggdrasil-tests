@@ -8,8 +8,12 @@ Integration tests for Yggdrasil.
 Dependencies
 ------------
 
-1. Vagrant
-2. Ruby
+* Vagrant
+* Ruby
+
+```
+vagrant plugin install vagrant-vbguest
+```
 
 
 
