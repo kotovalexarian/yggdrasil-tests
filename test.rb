@@ -2,7 +2,11 @@
 # frozen_string_literal: true
 
 def test(machine, command)
-  `rvm system do vagrant ssh #{machine} -c "#{command}"`
+  if system 'which rvm'
+    `rvm system do vagrant ssh #{machine} -c "#{command}"`
+  else
+    `vagrant ssh #{machine} -c "#{command}"`
+  end
 end
 
 raise unless test('public1', 'curl http://[200:253d:cbe3:4946:a1db:e5e7:1683:e8da]') == "Hello, World!\r\r\n"
